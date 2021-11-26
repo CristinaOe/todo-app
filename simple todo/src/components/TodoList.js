@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import CreateTask from "../modals/CreateTask";
 import Card from "./Card";
-import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 const TodoList = () => {
   const [modal, setModal] = useState(false);
@@ -52,48 +51,25 @@ const TodoList = () => {
           Create Task
         </button>
       </div>
-      <DragDropContext>
-        <Droppable droppableId='columns'>
-          {(provided) => (
-            <div
-              className='columns'
-              {...provided.droppableProps}
-              ref={provided.innerRef}
-            >
-              <div className='task-container'>
-                {taskList &&
-                  taskList.map((obj, index) => (
-                    <Draggable
-                      key={`${obj.id}`}
-                      draggableId={`${obj.id}`}
-                      index={index}
-                    >
-                      {(provided) => (
-                        <div
-                          {...provided.draggableProps}
-                          {...provided.dragHandleProps}
-                          ref={provided.innerRef}
-                        >
-                          <Card
-                            taskObj={obj}
-                            index={index}
-                            deleteTask={deleteTask}
-                            updateListArray={updateListArray}
-                          />
-                          {provided.placeholder}
-                        </div>
-                      )}
-                    </Draggable>
-                  ))}
-              </div>
-              <div className='done-task'>
-                <h3>Done Tasks</h3>
-              </div>
-              {provided.placeholder}
-            </div>
-          )}
-        </Droppable>
-      </DragDropContext>
+
+      <div className='columns'>
+        <div className='task-container'>
+          {taskList &&
+            taskList.map((obj, index) => (
+              <Card
+                key={index}
+                taskObj={obj}
+                index={index}
+                deleteTask={deleteTask}
+                updateListArray={updateListArray}
+              />
+            ))}
+        </div>
+        <div className='done-task'>
+          <h3>Done Tasks</h3>
+        </div>
+      </div>
+
       <CreateTask toggle={toggle} modal={modal} save={saveTask} />
     </>
   );

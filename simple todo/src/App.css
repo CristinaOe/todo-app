@@ -66,3 +66,15 @@
   margin: 15px 30px;
   font-size: 20px;
 }
+
+.searchbar {
+  background-color: #e9eef6;
+  text-align: right;
+  padding: 10px;
+}
+
+.searchbar input {
+  border-radius: 15px;
+  text-align: center;
+  border: 1px solid grey;
+}

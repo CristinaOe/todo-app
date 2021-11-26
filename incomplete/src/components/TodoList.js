@@ -64,8 +64,8 @@ const TodoList = () => {
                 {taskList &&
                   taskList.map((obj, index) => (
                     <Draggable
-                      key={`${obj.id}`}
-                      draggableId={`${obj.id}`}
+                      key={`${obj.index}`}
+                      draggableId={`${obj.index}`}
                       index={index}
                     >
                       {(provided) => (
@@ -75,6 +75,7 @@ const TodoList = () => {
                           ref={provided.innerRef}
                         >
                           <Card
+                            key={index}
                             taskObj={obj}
                             index={index}
                             deleteTask={deleteTask}
